@@ -281,6 +281,7 @@ nav ul a.nav-active {
   font-style: italic;
 }
 
+/* ── FIX: hero tagline overflow on mobile ── */
 .hero-tagline {
   font-family: 'DM Mono', monospace;
   font-size: 0.9rem;
@@ -289,6 +290,12 @@ nav ul a.nav-active {
   border-left: 2px solid var(--sky);
   padding-left: 1rem;
   line-height: 1.7;
+  /* Prevent overflow on narrow screens */
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .hero-desc {
@@ -1977,6 +1984,15 @@ footer {
   .btn-outline {
     text-align: center;
     width: 100%;
+  }
+
+  /* Ensure hero tagline stays within bounds on mobile */
+  .hero-tagline {
+    font-size: 0.78rem;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
   }
 
   section {

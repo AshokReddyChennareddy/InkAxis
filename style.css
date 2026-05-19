@@ -1,3 +1,4 @@
+
 /* ============================================================
    InkAxis Studio — style.css
    Color palette: Cream · Sky Blue · Black
@@ -134,6 +135,11 @@ nav a:hover {
   background: var(--sky) !important;
 }
 
+/* ============================================================
+   MOBILE MENU + HAMBURGER UPDATED
+   ============================================================ */
+
+/* hamburger hidden on desktop */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -142,44 +148,78 @@ nav a:hover {
   background: none;
   border: none;
   padding: 4px;
+  z-index: 1001;
 }
 
+/* hamburger lines */
 .hamburger span {
   display: block;
-  width: 22px;
-  height: 1.5px;
-  background: var(--ink);
-  transition: all 0.3s;
+  width: 24px;
+  height: 2px;
+  background: var(--cream);
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
+/* mobile menu hidden by default */
 .mobile-menu {
   display: none;
   flex-direction: column;
+
   position: fixed;
   top: 68px;
   left: 0;
   right: 0;
-  background: var(--cream);
-  border-bottom: 1px solid var(--border);
+
+  background: rgba(10, 15, 20, 0.97);
+
+  backdrop-filter: blur(20px);
+
+  border-bottom: 1px solid rgba(74, 172, 219, 0.15);
+
   padding: 1.5rem 5%;
+
   z-index: 999;
-  gap: 1.2rem;
+
+  gap: 1rem;
 }
 
+/* shown when JS adds .open */
 .mobile-menu.open {
   display: flex;
 }
 
+/* mobile menu links */
 .mobile-menu a {
   text-decoration: none;
-  color: var(--ink);
+  color: var(--cream);
+
   font-size: 1rem;
   font-weight: 500;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border);
+
+  padding: 0.8rem 0;
+
+  border-bottom: 1px solid rgba(74, 172, 219, 0.1);
+
+  transition: 0.25s ease;
 }
 
-/* ── HERO ── */
+.mobile-menu a:hover {
+  color: var(--sky);
+  padding-left: 6px;
+}
+
+/* hamburger visible only on mobile */
+@media (max-width: 600px) {
+
+  nav ul {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}/* ── HERO ── */
 #home {
   padding: 140px 5% 80px;
   max-width: 1200px;

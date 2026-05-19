@@ -26,19 +26,21 @@
                 <li><a href="#students" class="nav-students">Students 20% Off</a></li>
                 <li><a href="#contact" class="nav-cta">Hire Us</a></li>
             </ul>
-            <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
+
+    <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#services" onclick="toggleMenu()">Services</a>
-        <a href="#process" onclick="toggleMenu()">How I Work</a>
-        <a href="#about" onclick="toggleMenu()">About</a>
-        <a href="#pricing" onclick="toggleMenu()">Pricing</a>
-        <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
-        <a href="#students" onclick="toggleMenu()">Students 20% Off</a>
-        <a href="#contact" onclick="toggleMenu()">Hire Us</a>
+        <a href="#services">Services</a>
+        <a href="#process">How I Work</a>
+        <a href="#about">About</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#students">Students 20% Off</a>
+        <a href="#contact">Hire Us</a>
     </div>
 
     <!-- HERO -->
@@ -58,8 +60,7 @@
             <div class="hero-card">
                 <svg class="graph-svg" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <line x1="30" y1="10" x2="30" y2="190" stroke="#4AACDB" stroke-width="1.5" stroke-linecap="round" />
-                    <line x1="30" y1="190" x2="350" y2="190" stroke="#4AACDB" stroke-width="1.5"
-                        stroke-linecap="round" />
+                    <line x1="30" y1="190" x2="350" y2="190" stroke="#4AACDB" stroke-width="1.5" stroke-linecap="round" />
                     <line x1="30" y1="50" x2="350" y2="50" stroke="rgba(13,13,13,0.07)" stroke-width="1" />
                     <line x1="30" y1="90" x2="350" y2="90" stroke="rgba(13,13,13,0.07)" stroke-width="1" />
                     <line x1="30" y1="130" x2="350" y2="130" stroke="rgba(13,13,13,0.07)" stroke-width="1" />
@@ -292,8 +293,7 @@
                         that gap.</p>
                     <p class="about-body fade-up delay-2">We are a team of AI engineers and technical writers with
                         hands-on experience building real-world projects, publishing research papers, and crafting
-                        modern websites. We bring the same dedication and precision to every deliverable.
-                    </p>
+                        modern websites. We bring the same dedication and precision to every deliverable.</p>
                     <p class="about-body fade-up delay-2">I bring firsthand international research experience — having
                         worked as a researcher on global collaborative projects alongside teams and institutions across
                         different countries. That background means I understand international publication standards,
@@ -323,8 +323,7 @@
         <div class="section-inner">
             <div class="section-label fade-up">Investment</div>
             <h2 class="section-title fade-up delay-1">Simple, <em>Transparent</em> Pricing</h2>
-            <p class="section-sub fade-up delay-2">No hidden fees. Choose the tier that fits your project and budget.
-            </p>
+            <p class="section-sub fade-up delay-2">No hidden fees. Choose the tier that fits your project and budget.</p>
             <div class="pricing-tabs fade-up delay-1">
                 <button class="ptab active" onclick="switchTab(this,'ai')">AI / ML / DS</button>
                 <button class="ptab" onclick="switchTab(this,'research')">Research</button>
@@ -343,8 +342,7 @@
                         <li class="feat-item">1 revision round</li>
                     </ul>
                     <button class="plan-btn plan-btn-dark"
-                        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get
-                        Started</button>
+                        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
                 </div>
                 <div class="pricing-card featured">
                     <div class="featured-badge">MOST POPULAR</div>
@@ -359,8 +357,7 @@
                         <li class="feat-item">3 revision rounds</li>
                     </ul>
                     <button class="plan-btn plan-btn-sky"
-                        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get
-                        Started</button>
+                        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
                 </div>
                 <div class="pricing-card">
                     <div class="plan-name">Premium</div>
@@ -374,8 +371,7 @@
                         <li class="feat-item">Unlimited revisions</li>
                     </ul>
                     <button class="plan-btn plan-btn-dark"
-                        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get
-                        Started</button>
+                        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
                 </div>
             </div>
         </div>
@@ -510,14 +506,7 @@
     <!-- STUDENTS OFFER -->
     <section id="students" style="background:var(--ink);">
         <div class="section-inner">
-            <div class="section-label fade-up" style="color:var(--sky3);">
-                <style>
-                    .section-label.students-label::before {
-                        background: var(--sky3);
-                    }
-                </style>
-                Student Programme
-            </div>
+            <div class="section-label fade-up" style="color:var(--sky3);">Student Programme</div>
             <h2 class="section-title fade-up delay-1" style="color:var(--cream);">Built for <em>Students.</em><br>Priced
                 for <em>Reality.</em></h2>
             <p class="section-sub fade-up delay-2" style="color:rgba(245,240,232,0.5);">We know budgets are tight when
@@ -596,7 +585,7 @@
                 </div>
             </div>
 
-            <!-- Claim section: steps + form -->
+            <!-- Claim section -->
             <div class="student-claim-wrap fade-up delay-3">
                 <div class="student-claim-info">
                     <div class="section-label" style="color:var(--sky3);margin-bottom:1.2rem;">How to Claim</div>
@@ -635,7 +624,7 @@
                     </div>
                 </div>
 
-                <!-- Student form → Formspree -->
+                <!-- Student form -->
                 <form class="student-form" action="https://formspree.io/f/xzdoqjer" method="POST">
                     <input type="hidden" name="_subject" value="🎓 Student Discount Request — InkAxis">
                     <input type="hidden" name="form_type" value="STUDENT OFFER REQUEST">
@@ -717,7 +706,7 @@
         </div>
     </section>
 
-    <!-- CONTACT — Formspree -->
+    <!-- CONTACT -->
     <section id="contact">
         <div class="section-inner">
             <div class="section-label fade-up">Let's Work</div>
@@ -734,7 +723,6 @@
                             <div class="contact-value">inkaxisofficial@gmail.com</div>
                         </div>
                     </div>
-                    <!-- FIXED: WhatsApp with real Malaysian number, clickable -->
                     <div class="contact-detail">
                         <div class="contact-icon"><svg viewBox="0 0 24 24">
                                 <path
@@ -858,45 +846,32 @@
                 <div>
                     <div class="footer-col-title">Contact</div>
                     <ul class="footer-links">
-                        <li><a href="mailto:inkaxisofficial@gmail.com" target="_blank">inkaxisofficial@gmail.com</a>
-                        </li>
-
+                        <li><a href="mailto:inkaxisofficial@gmail.com" target="_blank">inkaxisofficial@gmail.com</a></li>
                         <li><a href="https://wa.me/601171368510" target="_blank">WhatsApp Us</a></li>
                         <li><a href="https://www.linkedin.com/in/inkaxis" target="_blank">LinkedIn</a></li>
                         <li><a href="https://github.com/InkAxisOfficial" target="_blank">GitHub</a></li>
-
-                        <li><a href="https://www.instagram.com/inkaxisofficial?igsh=MWduM3ZmZnc2cm5uOQ=="
-                                target="_blank">Instagram</a></li>
+                        <li><a href="https://www.instagram.com/inkaxisofficial?igsh=MWduM3ZmZnc2cm5uOQ==" target="_blank">Instagram</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <div class="footer-copy">© <span id="year"></span> InkAxis Studio · All rights reserved</div>
                 <div class="footer-socials">
-                    <a href="https://www.linkedin.com/in/inkaxis" target="_blank" class="social-btn"
-                        aria-label="LinkedIn"><svg viewBox="0 0 24 24">
+                    <a href="https://www.linkedin.com/in/inkaxis" target="_blank" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                             <rect x="2" y="9" width="4" height="12" />
                             <circle cx="4" cy="4" r="2" />
                         </svg></a>
-                    <a href="https://github.com/InkAxisOfficial" target="_blank" class="social-btn"
-                        aria-label="GitHub"><svg viewBox="0 0 24 24">
-                            <path
-                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    <a href="https://github.com/InkAxisOfficial" target="_blank" class="social-btn" aria-label="GitHub"><svg viewBox="0 0 24 24">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                         </svg></a>
-                    <!-- FIXED: Instagram opens in new tab -->
-                    <a href="https://www.instagram.com/inkaxisofficial?igsh=MWduM3ZmZnc2cm5uOQ==" target="_blank"
-                        class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24">
+                    <a href="https://www.instagram.com/inkaxisofficial?igsh=MWduM3ZmZnc2cm5uOQ==" target="_blank" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                         </svg></a>
-                    <!-- ADDED: WhatsApp social icon -->
-                    <a href="https://wa.me/601171368510" target="_blank" class="social-btn" aria-label="WhatsApp"><svg
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                    <a href="https://wa.me/601171368510" target="_blank" class="social-btn" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
                         </svg></a>
                 </div>
             </div>

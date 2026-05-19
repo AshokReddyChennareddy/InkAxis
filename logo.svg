@@ -1,0 +1,17 @@
+<svg width="160" height="48" viewBox="0 0 160 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon: axis lines -->
+  <line x1="8" y1="40" x2="44" y2="40" stroke="#4AACDB" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="8" y1="40" x2="8" y2="6" stroke="#4AACDB" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Chart line (pen/data line) -->
+  <polyline points="10,34 18,24 26,28 36,16 44,10" stroke="#2AADAD" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Pen nib arrowhead -->
+  <path d="M44 10 L40 15 L46 14 Z" fill="#4AACDB"/>
+  <!-- Data dots -->
+  <circle cx="18" cy="24" r="2.5" fill="#4AACDB"/>
+  <circle cx="36" cy="16" r="2.5" fill="#4AACDB"/>
+
+  <!-- Wordmark: Ink -->
+  <text x="56" y="32" font-family="Georgia, 'Cormorant Garamond', serif" font-size="22" font-weight="700" fill="#0D0D0D" letter-spacing="-0.5">Ink</text>
+  <!-- Wordmark: Axis (sky blue) -->
+  <text x="84" y="32" font-family="Georgia, 'Cormorant Garamond', serif" font-size="22" font-weight="700" fill="#4AACDB" letter-spacing="-0.5">Axis</text>
+</svg>

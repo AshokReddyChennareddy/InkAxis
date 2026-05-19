@@ -2365,112 +2365,90 @@ nav ul a.nav-active {
 }
 
 @media (max-width: 768px) {
-  /* Fix hamburger visibility */
-  .hamburger {
-    display: flex !important;
-  }
 
-  nav ul {
+  /* Hide hero card on mobile */
+  .hero-visual {
     display: none !important;
   }
 
-  /* Fix marquee cut off */
+  /* Fix hero section */
+  #home {
+    grid-template-columns: 1fr !important;
+    padding: 100px 4% 60px !important;
+    min-height: auto !important;
+  }
+
+  /* Fix marquee overflow */
   .marquee-section {
+    overflow: hidden !important;
+    width: 100% !important;
+  }
+
+  .marquee-track {
+    width: max-content !important;
+  }
+
+  /* Fix body overflow */
+  body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  /* Fix all sections */
+  section {
+    padding: 60px 4% !important;
     overflow: hidden !important;
   }
 
-  /* Fix hero padding */
-  #home {
-    padding: 100px 4% 60px !important;
+  .section-inner {
+    overflow: hidden !important;
+    width: 100% !important;
   }
 
-  /* Fix service cards full width */
+  /* Services */
   .services-grid {
     grid-template-columns: 1fr !important;
   }
 
-  /* Fix buttons spacing */
-  .hero-btns {
-    flex-direction: column !important;
-    width: 100% !important;
-  }
-
-  .btn-primary, .btn-outline {
-    text-align: center !important;
-    width: 100% !important;
-  }
-
-  /* Fix section padding */
-  section {
-    padding: 60px 4% !important;
-  }
-}
-@media (max-width: 768px) {
-
-  /* ── HERO ── */
-  #home {
-    padding: 100px 4% 60px !important;
-    grid-template-columns: 1fr !important;
-  }
-
-  .hero-visual {
-    display: block !important;
-  }
-
-  .hero-card {
-    transform: none !important;
-  }
-
-  /* ── SERVICES ── */
-  .services-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* ── PROCESS ── */
+  /* Process */
   .process-steps {
     grid-template-columns: 1fr !important;
   }
 
   .process-header {
     grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
   }
 
-  /* ── ABOUT ── */
+  /* About */
   .about-grid {
     grid-template-columns: 1fr !important;
-    gap: 2rem !important;
   }
 
-  /* ── PRICING ── */
+  /* Pricing */
   .pricing-grid {
     grid-template-columns: 1fr !important;
   }
 
   .pricing-tabs {
     width: 100% !important;
+    flex-wrap: wrap !important;
   }
 
   .ptab {
     flex: 1 !important;
-    text-align: center !important;
-    padding: 0.6rem 0.5rem !important;
     font-size: 0.7rem !important;
   }
 
-  /* ── STUDENT OFFER CARDS ── */
+  /* Student offer */
   .student-offer-grid {
     grid-template-columns: 1fr !important;
-    overflow: visible !important;
   }
 
-  /* ── STUDENT CLAIM ── */
   .student-claim-wrap {
     grid-template-columns: 1fr !important;
-    gap: 2rem !important;
   }
 
-  /* ── REVIEWS ── */
+  /* Reviews */
   .first-review-wrap {
     grid-template-columns: 1fr !important;
   }
@@ -2479,60 +2457,49 @@ nav ul a.nav-active {
     grid-template-columns: 1fr !important;
   }
 
-  /* ── FAQ ── */
+  /* FAQ */
   .faq-grid {
     grid-template-columns: 1fr !important;
-    gap: 2rem !important;
   }
 
-  /* ── CONTACT ── */
+  /* Contact */
   .contact-grid {
     grid-template-columns: 1fr !important;
-    gap: 2rem !important;
   }
 
   .form-row {
     grid-template-columns: 1fr !important;
   }
 
-  /* ── FOOTER ── */
+  /* Footer */
   .footer-top {
     grid-template-columns: 1fr !important;
-    gap: 2rem !important;
   }
 
   .footer-bottom {
     flex-direction: column !important;
-    gap: 1rem !important;
     text-align: center !important;
+    gap: 1rem !important;
   }
 
-  /* ── SKILLS GRID ── */
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
-  /* ── GENERAL ── */
-  section {
-    padding: 60px 4% !important;
-  }
-
+  /* Buttons */
   .hero-btns {
     flex-direction: column !important;
   }
 
   .btn-primary, .btn-outline {
-    text-align: center !important;
     width: 100% !important;
+    text-align: center !important;
   }
 
-  /* ── NO HORIZONTAL SCROLL ── */
-  body {
-    overflow-x: hidden !important;
+  /* Skills */
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 
+  /* Fix all grids overflow */
   * {
-    max-width: 100% !important;
+    max-width: 100vw !important;
     box-sizing: border-box !important;
   }
 }

@@ -2710,3 +2710,30 @@ nav ul a.nav-active {
     text-align: center;
   }
 }
+/* ============================================================
+   FINAL MOBILE HERO FIX
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .hero-visual {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 2rem !important;
+    width: 100% !important;
+  }
+
+  .hero-card {
+    display: block !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    transform: none !important;
+    margin: 0 auto !important;
+  }
+
+  .graph-svg {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}

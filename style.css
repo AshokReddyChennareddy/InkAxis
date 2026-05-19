@@ -2800,24 +2800,116 @@ nav ul a.nav-active {
 
 @media (max-width: 768px) {
 
+  /* HERO SECTION */
+  #home {
+    padding: 110px 5% 70px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 2.5rem !important;
+
+    width: 100%;
+  }
+
+  /* CONTENT */
+  .hero-content {
+    width: 100%;
+  }
+
+  /* VISUAL */
   .hero-visual {
+    width: 100%;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    margin-top: 2rem !important;
-    width: 100% !important;
   }
 
+  /* CARD */
   .hero-card {
-    display: block !important;
-    width: 100% !important;
-    max-width: 320px !important;
-    transform: none !important;
+    width: 92% !important;
+    max-width: 340px !important;
+
     margin: 0 auto !important;
+
+    padding: 2rem 1.4rem !important;
+
+    transform:
+      perspective(1000px)
+      rotateY(-3deg)
+      rotateX(2deg) !important;
+
+    box-shadow:
+      0 0 0 1px rgba(74, 172, 219, 0.1),
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 80px rgba(74, 172, 219, 0.08),
+      inset 0 1px 0 rgba(74, 172, 219, 0.15) !important;
   }
 
+  /* GRAPH */
   .graph-svg {
     width: 100% !important;
-    max-width: 100% !important;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* STATS ROW */
+  .hero-stat-row {
+    width: 100% !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+
+    align-items: center !important;
+    justify-items: center !important;
+
+    gap: 0.2rem !important;
+
+    padding-top: 1.4rem !important;
+    margin-top: 1.4rem !important;
+  }
+
+  /* EACH STAT */
+  .hero-stat {
+    width: 100%;
+    text-align: center !important;
+  }
+
+  .hero-stat-num {
+    font-size: 1.9rem !important;
+    line-height: 1 !important;
+  }
+
+  .hero-stat-label {
+    font-size: 0.60rem !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+  }
+
+  /* TITLE */
+  .hero-title {
+    font-size: 3.2rem !important;
+    line-height: 1.08 !important;
+  }
+
+  /* TAGLINE */
+  .hero-tagline {
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.7 !important;
+  }
+
+  /* BUTTONS */
+  .hero-btns {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    text-align: center;
   }
 }

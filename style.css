@@ -2797,32 +2797,30 @@ nav ul a.nav-active {
 /* ============================================================
    FINAL MOBILE HERO FIX
    ============================================================ */
-
 @media (max-width: 768px) {
 
   /* HERO SECTION */
   #home {
     padding: 110px 5% 70px !important;
 
-    display: flex !important;
-    flex-direction: column !important;
-
-    align-items: center !important;
-    justify-content: center !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
 
     gap: 2.5rem !important;
 
-    width: 100%;
+    align-items: center !important;
+    justify-items: center !important;
   }
 
-  /* CONTENT */
+  /* HERO CONTENT */
   .hero-content {
-    width: 100%;
+    width: 100% !important;
   }
 
-  /* VISUAL */
+  /* HERO VISUAL */
   .hero-visual {
-    width: 100%;
+    width: 100% !important;
+
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -2830,12 +2828,17 @@ nav ul a.nav-active {
 
   /* CARD */
   .hero-card {
-    width: 92% !important;
+
+    width: 100% !important;
     max-width: 340px !important;
 
     margin: 0 auto !important;
 
-    padding: 2rem 1.4rem !important;
+    background: rgba(14, 22, 30, 0.92) !important;
+
+    border: 1px solid rgba(74, 172, 219, 0.2) !important;
+
+    border-radius: 6px !important;
 
     transform:
       perspective(1000px)
@@ -2852,64 +2855,62 @@ nav ul a.nav-active {
   /* GRAPH */
   .graph-svg {
     width: 100% !important;
-    display: block;
-    margin: 0 auto;
+    max-width: 100% !important;
   }
 
   /* STATS ROW */
   .hero-stat-row {
-    width: 100% !important;
 
     display: grid !important;
+
     grid-template-columns: repeat(4, 1fr) !important;
 
-    align-items: center !important;
+    width: 100% !important;
+
+    gap: 0.4rem !important;
+
     justify-items: center !important;
+    align-items: center !important;
 
-    gap: 0.2rem !important;
+    margin-top: 1.3rem !important;
 
-    padding-top: 1.4rem !important;
-    margin-top: 1.4rem !important;
+    padding-top: 1.2rem !important;
+
+    border-top: 1px solid rgba(74, 172, 219, 0.15) !important;
   }
 
   /* EACH STAT */
   .hero-stat {
-    width: 100%;
+    width: 100% !important;
     text-align: center !important;
   }
 
   .hero-stat-num {
-    font-size: 1.9rem !important;
+    font-size: 1.55rem !important;
     line-height: 1 !important;
   }
 
   .hero-stat-label {
-    font-size: 0.60rem !important;
+    font-size: 0.56rem !important;
     line-height: 1.4 !important;
-    text-align: center !important;
+
+    letter-spacing: 0.04em !important;
   }
 
   /* TITLE */
   .hero-title {
-    font-size: 3.2rem !important;
-    line-height: 1.08 !important;
-  }
-
-  /* TAGLINE */
-  .hero-tagline {
-    white-space: normal !important;
-    overflow-wrap: break-word !important;
-    line-height: 1.7 !important;
+    font-size: clamp(2.5rem, 10vw, 3.8rem) !important;
+    line-height: 1.05 !important;
   }
 
   /* BUTTONS */
   .hero-btns {
-    flex-direction: column;
+    width: 100% !important;
+    flex-direction: column !important;
   }
 
-  .btn-primary,
-  .btn-outline {
-    width: 100%;
-    text-align: center;
+  .hero-btns a {
+    width: 100% !important;
+    text-align: center !important;
   }
 }

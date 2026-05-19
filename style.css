@@ -2363,3 +2363,176 @@ nav ul a.nav-active {
   color: var(--sky) !important;
   text-shadow: 0 0 12px rgba(74, 172, 219, 0.5) !important;
 }
+
+@media (max-width: 768px) {
+  /* Fix hamburger visibility */
+  .hamburger {
+    display: flex !important;
+  }
+
+  nav ul {
+    display: none !important;
+  }
+
+  /* Fix marquee cut off */
+  .marquee-section {
+    overflow: hidden !important;
+  }
+
+  /* Fix hero padding */
+  #home {
+    padding: 100px 4% 60px !important;
+  }
+
+  /* Fix service cards full width */
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Fix buttons spacing */
+  .hero-btns {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .btn-primary, .btn-outline {
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  /* Fix section padding */
+  section {
+    padding: 60px 4% !important;
+  }
+}
+@media (max-width: 768px) {
+
+  /* ── HERO ── */
+  #home {
+    padding: 100px 4% 60px !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-visual {
+    display: block !important;
+  }
+
+  .hero-card {
+    transform: none !important;
+  }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── PROCESS ── */
+  .process-steps {
+    grid-template-columns: 1fr !important;
+  }
+
+  .process-header {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* ── PRICING ── */
+  .pricing-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pricing-tabs {
+    width: 100% !important;
+  }
+
+  .ptab {
+    flex: 1 !important;
+    text-align: center !important;
+    padding: 0.6rem 0.5rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  /* ── STUDENT OFFER CARDS ── */
+  .student-offer-grid {
+    grid-template-columns: 1fr !important;
+    overflow: visible !important;
+  }
+
+  /* ── STUDENT CLAIM ── */
+  .student-claim-wrap {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* ── REVIEWS ── */
+  .first-review-wrap {
+    grid-template-columns: 1fr !important;
+  }
+
+  .review-form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── FAQ ── */
+  .faq-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── FOOTER ── */
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    text-align: center !important;
+  }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* ── GENERAL ── */
+  section {
+    padding: 60px 4% !important;
+  }
+
+  .hero-btns {
+    flex-direction: column !important;
+  }
+
+  .btn-primary, .btn-outline {
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  /* ── NO HORIZONTAL SCROLL ── */
+  body {
+    overflow-x: hidden !important;
+  }
+
+  * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}

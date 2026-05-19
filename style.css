@@ -2413,19 +2413,73 @@ nav ul a.nav-active {
 }
 @media (max-width: 768px) {
 
-  /* ── HERO ── */
+  /* HERO LAYOUT */
   #home {
-    padding: 100px 4% 60px !important;
-    grid-template-columns: 1fr !important;
+    padding: 110px 5% 70px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2.5rem !important;
+    align-items: center !important;
   }
 
+  /* HERO CONTENT */
+  .hero-content {
+    width: 100%;
+  }
+
+  /* GRAPH CARD */
   .hero-visual {
-    display: block !important;
+    width: 100%;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
   .hero-card {
-    transform: none !important;
+    width: 100%;
+    max-width: 360px;
+
+    /* KEEP DESKTOP EFFECT */
+    transform:
+      perspective(1000px)
+      rotateY(-3deg)
+      rotateX(2deg) !important;
+
+    box-shadow:
+      0 0 0 1px rgba(74, 172, 219, 0.1),
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 80px rgba(74, 172, 219, 0.08),
+      inset 0 1px 0 rgba(74, 172, 219, 0.15) !important;
   }
+
+  .graph-svg {
+    width: 100%;
+  }
+
+  /* TITLE */
+  .hero-title {
+    font-size: 3.2rem !important;
+    line-height: 1.08 !important;
+  }
+
+  /* TAGLINE */
+  .hero-tagline {
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.7 !important;
+  }
+
+  /* BUTTONS */
+  .hero-btns {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    text-align: center;
+  }
+}
 
   /* ── SERVICES ── */
   .services-grid {

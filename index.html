@@ -515,187 +515,179 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
-         PDF RESOURCES — FIXED (fetches live from GitHub API)
-         ═══════════════════════════════════════════════════════ -->
-    <section id="resources" style="background:var(--ink);">
-        <div class="section-inner">
-            <div class="section-label fade-up" style="color:var(--sky3);">Free Resources</div>
-            <h2 class="section-title fade-up delay-1" style="color:var(--cream);">Download Our <em>Free Guides</em></h2>
-            <p class="section-sub fade-up delay-2" style="color:rgba(245,240,232,0.5);">
-                Practical guides and cheatsheets — no sign-up, no redirects. Direct download from InkAxis.
-            </p>
+    <!-- RESOURCES -->
+<section id="resources" style="background:var(--ink);">
+    <div class="section-inner">
 
-            <!-- Loading -->
-            <div id="pdf-loading" style="text-align:center;padding:4rem 0;color:rgba(245,240,232,0.35);font-family:'DM Mono',monospace;font-size:0.82rem;letter-spacing:0.1em;">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(74,172,219,0.4)" stroke-width="1.5" style="margin-bottom:1rem;display:block;margin-left:auto;margin-right:auto;">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                    <polyline points="7 10 12 15 17 10"/>
-                    <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-                LOADING RESOURCES...
-            </div>
+        <div class="section-label fade-up" style="color:var(--sky3);">
+            Free Resources
+        </div>
 
-            <!-- Cards grid — shown after fetch -->
-            <div id="pdf-grid" style="display:none;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:2.5rem;"></div>
+        <h2 class="section-title fade-up delay-1" style="color:var(--cream);">
+            Explore Our <em>Resources</em>
+        </h2>
 
-            <!-- Empty state -->
-            <div id="pdf-empty" style="display:none;text-align:center;padding:3rem 0;">
-                <div style="border:1px dashed rgba(74,172,219,0.25);border-radius:12px;padding:3rem 2rem;max-width:480px;margin:0 auto;">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(74,172,219,0.4)" stroke-width="1.5" style="margin-bottom:1.2rem;">
+        <p class="section-sub fade-up delay-2"
+           style="color:rgba(245,240,232,0.5);">
+            Download PDFs, roadmaps, cheatsheets and guides directly from InkAxis.
+        </p>
+
+        <!-- SINGLE RESOURCE CARD -->
+        <div class="services-grid fade-up delay-2"
+             style="grid-template-columns:repeat(1,minmax(300px,520px));
+                    justify-content:center;">
+
+            <div class="service-card"
+                 style="background:rgba(245,240,232,0.04);
+                        border-color:rgba(245,240,232,0.1);
+                        text-align:center;
+                        position:relative;
+                        overflow:hidden;">
+
+                <!-- TOP LINE -->
+                <div style="position:absolute;
+                            top:0;
+                            left:0;
+                            right:0;
+                            height:2px;
+                            background:linear-gradient(
+                                90deg,
+                                rgba(74,172,219,0.7),
+                                rgba(42,173,173,0.3),
+                                transparent
+                            );">
+                </div>
+
+                <!-- ICON -->
+                <div class="service-icon"
+                     style="margin:auto;
+                            background:rgba(74,172,219,0.1);
+                            border-color:rgba(74,172,219,0.2);">
+
+                    <svg viewBox="0 0 24 24" style="stroke:#4AACDB;">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                         <polyline points="14 2 14 8 20 8"/>
+                        <line x1="8" y1="13" x2="16" y2="13"/>
+                        <line x1="8" y1="17" x2="16" y2="17"/>
                     </svg>
-                    <p style="color:rgba(245,240,232,0.35);font-size:0.88rem;margin:0 0 1.2rem;">No guides uploaded yet — check back soon.</p>
-                    <a href="https://github.com/AshokReddyChennareddy/InkAxis/tree/main/pdfs" target="_blank" style="color:var(--sky3);font-size:0.78rem;text-decoration:none;letter-spacing:0.05em;">View on GitHub →</a>
+
+                </div>
+
+                <!-- SMALL LABEL -->
+                <div class="service-num" style="color:var(--sky3);">
+                    InkAxis Resources
+                </div>
+
+                <!-- TITLE -->
+                <div class="service-name" style="color:var(--cream);">
+                    PDFs, Guides & Roadmaps
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="service-desc"
+                     style="color:rgba(245,240,232,0.5);">
+                    Access all free resources including ML roadmaps,
+                    Python cheatsheets, research guides and more.
+                </div>
+
+                <!-- TAGS -->
+                <div class="service-tags"
+                     style="justify-content:center;">
+                    <span class="service-tag">Machine Learning</span>
+                    <span class="service-tag">Python</span>
+                    <span class="service-tag">Research</span>
+                </div>
+
+                <!-- BUTTONS -->
+                <div style="margin-top:1.6rem;
+                            display:flex;
+                            gap:12px;
+                            justify-content:center;
+                            flex-wrap:wrap;">
+
+                    <!-- RESOURCES BUTTON -->
+                    <a href="https://github.com/AshokReddyChennareddy/InkAxis/tree/main/pdfs"
+                       target="_blank"
+                       style="display:inline-flex;
+                              align-items:center;
+                              gap:8px;
+                              padding:0.75rem 1.5rem;
+                              background:rgba(245,240,232,0.04);
+                              border:1px solid rgba(245,240,232,0.15);
+                              border-radius:7px;
+                              color:var(--cream);
+                              font-size:0.78rem;
+                              font-weight:700;
+                              letter-spacing:0.07em;
+                              text-decoration:none;
+                              text-transform:uppercase;
+                              transition:0.2s;"
+
+                       onmouseover="this.style.borderColor='#4AACDB';
+                                    this.style.color='#4AACDB'"
+
+                       onmouseout="this.style.borderColor='rgba(245,240,232,0.15)';
+                                   this.style.color='var(--cream)'">
+
+                        Resources
+
+                    </a>
+
+                    <!-- DOWNLOAD BUTTON -->
+                    <a href="https://github.com/AshokReddyChennareddy/InkAxis/tree/main/pdfs"
+                       target="_blank"
+                       style="display:inline-flex;
+                              align-items:center;
+                              gap:8px;
+                              padding:0.75rem 1.5rem;
+                              background:rgba(74,172,219,0.12);
+                              border:1px solid rgba(74,172,219,0.4);
+                              border-radius:7px;
+                              color:#4AACDB;
+                              font-size:0.78rem;
+                              font-weight:700;
+                              letter-spacing:0.07em;
+                              text-decoration:none;
+                              text-transform:uppercase;
+                              transition:0.2s;"
+
+                       onmouseover="this.style.background='rgba(74,172,219,0.22)';
+                                    this.style.borderColor='rgba(74,172,219,0.7)'"
+
+                       onmouseout="this.style.background='rgba(74,172,219,0.12)';
+                                   this.style.borderColor='rgba(74,172,219,0.4)'">
+
+                        Download
+
+                    </a>
+
                 </div>
             </div>
-
-            <!-- Error state -->
-            <div id="pdf-error" style="display:none;text-align:center;padding:3rem 0;color:rgba(245,240,232,0.3);font-size:0.85rem;">
-                Could not load resources. <a href="https://github.com/AshokReddyChennareddy/InkAxis/tree/main/pdfs" target="_blank" style="color:var(--sky3);">View on GitHub</a>
-            </div>
-
-            <!-- Footer note -->
-            <p id="pdf-footer-note" style="display:none;margin-top:2rem;font-size:0.78rem;color:rgba(245,240,232,0.3);text-align:center;">
-                More guides coming soon &middot; Follow us on <a href="https://www.instagram.com/inkaxis_official" target="_blank" style="color:var(--sky3);text-decoration:none;">Instagram</a> for updates
-            </p>
         </div>
-    </section>
 
-    <script>
-    (function () {
-        var OWNER    = 'AshokReddyChennareddy';
-        var REPO     = 'InkAxis';
-        var BRANCH   = 'main';
-        var API_URL  = 'https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/pdfs?ref=' + BRANCH;
-        var RAW_BASE = 'https://raw.githubusercontent.com/' + OWNER + '/' + REPO + '/' + BRANCH + '/pdfs/';
+        <!-- FOOTER -->
+        <p style="margin-top:1.7rem;
+                  font-size:0.78rem;
+                  color:rgba(245,240,232,0.25);
+                  text-align:center;">
 
-        function toTitle(filename) {
-            return filename
-                .replace(/\.pdf$/i, '')
-                .replace(/[-_]/g, ' ')
-                .replace(/\b\w/g, function (c) { return c.toUpperCase(); });
-        }
+            More resources coming soon · Follow us on
 
-        function getTags(name) {
-            var n = name.toLowerCase();
-            if (n.indexOf('python')   > -1) return ['Python', 'Interview Prep'];
-            if (n.indexOf('machine')  > -1 || n.indexOf('ml') > -1) return ['Machine Learning', 'Python'];
-            if (n.indexOf('deep')     > -1 || n.indexOf('dl') > -1) return ['Deep Learning', 'Neural Nets'];
-            if (n.indexOf('research') > -1 || n.indexOf('paper') > -1) return ['Research', 'IEEE'];
-            if (n.indexOf('resume')   > -1 || n.indexOf('cv') > -1) return ['Resume', 'ATS-Ready'];
-            if (n.indexOf('data')     > -1) return ['Data Science', 'Analysis'];
-            if (n.indexOf('nlp')      > -1) return ['NLP', 'Python'];
-            if (n.indexOf('web')      > -1) return ['Web Dev', 'HTML/CSS'];
-            return ['PDF Guide', 'Free'];
-        }
+            <a href="https://www.instagram.com/inkaxis_official"
+               target="_blank"
+               style="color:var(--sky3);
+                      text-decoration:none;">
 
-        function getIconPath(name) {
-            var n = name.toLowerCase();
-            if (n.indexOf('python')  > -1) return '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>';
-            if (n.indexOf('ml') > -1 || n.indexOf('machine') > -1 || n.indexOf('deep') > -1)
-                return '<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>';
-            if (n.indexOf('data') > -1)
-                return '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>';
-            if (n.indexOf('resume') > -1 || n.indexOf('cv') > -1)
-                return '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="9" y1="18" x2="15" y2="18"/>';
-            return '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>';
-        }
+                Instagram
 
-        function buildCard(file) {
-            var title    = toTitle(file.name);
-            var tags     = getTags(file.name);
-            var iconPath = getIconPath(file.name);
-            var rawUrl   = RAW_BASE + encodeURIComponent(file.name);
+            </a>
 
-            var tagHTML = tags.map(function (t) {
-                return '<span class="service-tag">' + t + '</span>';
-            }).join('');
+            for updates
 
-            var card = document.createElement('div');
-            card.className = 'service-card fade-up';
-            card.style.cssText = 'background:rgba(245,240,232,0.04);border-color:rgba(245,240,232,0.1);position:relative;overflow:hidden;transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s;';
+        </p>
 
-            card.innerHTML =
-                /* top accent line */
-                '<div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(74,172,219,0.7),rgba(42,173,173,0.3),transparent);"></div>' +
-
-                /* icon */
-                '<div class="service-icon" style="background:rgba(74,172,219,0.1);border-color:rgba(74,172,219,0.2);">' +
-                    '<svg viewBox="0 0 24 24" style="stroke:#4AACDB;">' + iconPath + '</svg>' +
-                '</div>' +
-
-                /* badge */
-                '<div class="service-num" style="color:var(--sky3);">PDF &middot; Free Download</div>' +
-
-                /* title */
-                '<div class="service-name" style="color:var(--cream);">' + title + '</div>' +
-
-                /* description */
-                '<div class="service-desc" style="color:rgba(245,240,232,0.5);">Free downloadable guide from InkAxis — no sign-up required.</div>' +
-
-                /* tags */
-                '<div class="service-tags">' + tagHTML + '</div>' +
-
-                /* download button */
-                '<div style="margin-top:1.4rem;">' +
-                    '<a href="' + rawUrl + '" download="' + file.name + '" target="_blank" ' +
-                    'style="display:inline-flex;align-items:center;gap:8px;padding:0.65rem 1.4rem;' +
-                    'background:rgba(74,172,219,0.12);border:1px solid rgba(74,172,219,0.4);border-radius:7px;' +
-                    'color:#4AACDB;font-size:0.75rem;font-weight:700;letter-spacing:0.07em;text-decoration:none;text-transform:uppercase;' +
-                    'transition:background 0.2s,border-color 0.2s;"' +
-                    ' onmouseover="this.style.background=\'rgba(74,172,219,0.22)\';this.style.borderColor=\'rgba(74,172,219,0.7)\'"' +
-                    ' onmouseout="this.style.background=\'rgba(74,172,219,0.12)\';this.style.borderColor=\'rgba(74,172,219,0.4)\'">' +
-                    '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
-                        '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>' +
-                        '<polyline points="7 10 12 15 17 10"/>' +
-                        '<line x1="12" y1="15" x2="12" y2="3"/>' +
-                    '</svg>Download Free</a>' +
-                '</div>';
-
-            card.addEventListener('mouseenter', function () {
-                card.style.borderColor = 'rgba(74,172,219,0.35)';
-                card.style.transform   = 'translateY(-3px)';
-                card.style.boxShadow   = '0 12px 40px rgba(74,172,219,0.08)';
-            });
-            card.addEventListener('mouseleave', function () {
-                card.style.borderColor = 'rgba(245,240,232,0.1)';
-                card.style.transform   = '';
-                card.style.boxShadow   = '';
-            });
-
-            return card;
-        }
-
-        fetch(API_URL, { headers: { 'Accept': 'application/vnd.github.v3+json' } })
-        .then(function (res) {
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            return res.json();
-        })
-        .then(function (files) {
-            document.getElementById('pdf-loading').style.display = 'none';
-            var pdfs = files.filter(function (f) { return /\.pdf$/i.test(f.name); });
-
-            if (!pdfs.length) {
-                document.getElementById('pdf-empty').style.display = 'block';
-                return;
-            }
-
-            var grid = document.getElementById('pdf-grid');
-            grid.style.display = 'grid';
-            pdfs.forEach(function (file) { grid.appendChild(buildCard(file)); });
-            document.getElementById('pdf-footer-note').style.display = 'block';
-        })
-        .catch(function (err) {
-            console.error('InkAxis PDF fetch error:', err);
-            document.getElementById('pdf-loading').style.display = 'none';
-            document.getElementById('pdf-error').style.display   = 'block';
-        });
-    })();
-    </script>
-    <!-- ═══════════════════════════════════════════════════════ -->
-
+    </div>
+</section>
 
     <!-- STUDENTS OFFER -->
     <section id="students" style="background:var(--ink);">

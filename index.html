@@ -21,6 +21,7 @@
 
     <!-- Birthday + Nan Special Styles -->
     <style>
+      * { -webkit-tap-highlight-color: transparent; }
       /* ==============================
          BIRTHDAY HERO SECTION
          ============================== */
@@ -31,10 +32,850 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        cursor: pointer;
+        cursor: default;
         background: radial-gradient(ellipse at 50% 100%, #15184a 0%, #0B0E2E 45%, #050715 100%);
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        user-select: none;
+        -webkit-user-select: none;
       }
       #bday-stars { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+      .bday-star {
+        position: absolute; border-radius: 50%; background: #FFF8E7;
+        animation: bdayTwinkle ease-in-out infinite;
+      }
+      @keyframes bdayTwinkle { 0%,100%{opacity:0.12;} 50%{opacity:0.85;} }
+      #fw-canvas {
+        position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      }
+      .bday-skyline {
+        position: absolute; bottom: 0; left: 0; width: 100%; height: 14vh;
+        z-index: 2; pointer-events: none; fill: #050617; opacity: 0.85;
+      }
+      .bday-content {
+        position: relative; z-index: 3; text-align: center;
+        padding: 6vh 6vw; max-width: 900px; width: 100%;
+      }
+      .bday-eyebrow {
+        font-family: 'Poppins','Segoe UI',sans-serif;
+        letter-spacing: 0.35em; text-transform: uppercase;
+        font-size: clamp(0.65rem,1.4vw,0.85rem); color: #FFC93C;
+        opacity: 0; font-weight: 600;
+        animation: bdayFadeUp 0.8s ease forwards 0.3s;
+      }
+      .bday-name-wrap {
+        margin: 1.2rem 0 1.6rem;
+        min-height: clamp(5rem,16vw,11rem);
+        display: flex; align-items: center; justify-content: center;
+      }
+      .bday-name {
+        font-family: 'Baloo 2','Poppins',sans-serif;
+        font-weight: 800; font-size: clamp(3rem,12vw,8.5rem);
+        line-height: 1; letter-spacing: 0.01em;
+        color: #FFC93C;
+        background: linear-gradient(180deg,#FFF8E7 0%,#FFC93C 55%,#ff9f43 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 18px rgba(255,201,60,0.45)) drop-shadow(0 0 50px rgba(255,45,120,0.25));
+        display: inline-block; white-space: nowrap;
+      }
+      @supports not ((-webkit-background-clip:text) or (background-clip:text)) {
+        .bday-name { background: none; color: #FFC93C; -webkit-text-fill-color: unset; }
+      }
+      .bday-name .bletter {
+        display: inline-block; opacity: 0;
+        transform: translateY(40px) scale(0.4) rotate(-8deg);
+        animation: burstIn 0.7s cubic-bezier(0.2,1.4,0.4,1) forwards;
+      }
+      @keyframes burstIn {
+        0%   { opacity:0; transform:translateY(40px) scale(0.3) rotate(-12deg); filter:blur(6px); }
+        60%  { opacity:1; transform:translateY(-6px) scale(1.08) rotate(3deg); filter:blur(0); }
+        100% { opacity:1; transform:translateY(0) scale(1) rotate(0); }
+      }
+      .bday-tagline {
+        font-family: 'Poppins',sans-serif; font-weight: 700;
+        font-size: clamp(1.3rem,3vw,2rem); color: #FFF8E7;
+        text-shadow: 0 0 20px rgba(255,45,120,0.4);
+        opacity: 0; animation: bdayFadeUp 0.8s ease forwards 1.9s;
+      }
+      .bday-message {
+        margin-top: 1.8rem; font-family: 'Lora',Georgia,serif;
+        font-size: clamp(1rem,1.9vw,1.25rem); line-height: 1.85;
+        color: #ffe9c2; opacity: 0;
+        animation: bdayFadeUp 1s ease forwards 2.4s;
+        max-width: 640px; margin-left: auto; margin-right: auto;
+      }
+      .bday-message strong { color: #FFC93C; font-weight: 600; }
+      .bday-signature {
+        margin-top: 2.2rem; font-family: 'Poppins',sans-serif; font-weight: 600;
+        font-size: clamp(0.85rem,1.6vw,1rem); letter-spacing: 0.08em;
+        color: #FF2D78; opacity: 0; animation: bdayFadeUp 1s ease forwards 3s;
+      }
+      .bday-hint {
+        margin-top: 3rem; font-size: 0.8rem;
+        color: rgba(255,248,231,0.45); letter-spacing: 0.08em;
+        opacity: 0;
+        animation: bdayFadeUp 1s ease forwards 3.6s, bdayPulse 2.5s ease-in-out infinite 3.6s;
+      }
+      @keyframes bdayFadeUp { from{opacity:0;transform:translateY(18px);} to{opacity:1;transform:translateY(0);} }
+      @keyframes bdayPulse  { 0%,100%{opacity:0.35;} 50%{opacity:0.8;} }
+
+      /* ==============================
+         NAN SPECIAL SECTION
+         ============================== */
+      #nan-special {
+        position: relative; z-index: 10;
+        background: var(--ink);
+        border-top: 1px solid rgba(74,172,219,0.1);
+        padding: 6rem 2rem 5rem;
+      }
+      .ns-inner  { max-width: 1080px; margin: 0 auto; }
+      .ns-label  {
+        font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em;
+        text-transform: uppercase; color: var(--sky); margin-bottom: 0.6rem;
+      }
+      .ns-title  {
+        font-family: 'Baloo 2','Poppins',sans-serif;
+        font-weight: 800; font-size: clamp(1.7rem,4vw,2.8rem);
+        color: var(--cream); line-height: 1.15; margin-bottom: 0.7rem;
+      }
+      .ns-title em { font-style: italic; color: #FFC93C; }
+      .ns-sub    {
+        font-size: clamp(0.88rem,1.5vw,1rem);
+        color: rgba(245,240,232,0.42); max-width: 500px;
+        line-height: 1.7; margin-bottom: 2.8rem;
+      }
+      /* Service cards */
+      .ns-cards {
+        display: grid; grid-template-columns: repeat(3,1fr);
+        gap: 1.1rem; margin-bottom: 1rem;
+      }
+      .ns-card {
+        background: rgba(245,240,232,0.03);
+        border: 1px solid rgba(245,240,232,0.08);
+        border-radius: 12px; padding: 1.7rem 1.4rem;
+        transition: transform 0.22s, border-color 0.22s;
+      }
+      .ns-card:hover { transform: translateY(-3px); border-color: rgba(255,201,60,0.3); }
+      .ns-num  {
+        font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em;
+        text-transform: uppercase; color: rgba(255,201,60,0.6); margin-bottom: 0.5rem;
+      }
+      .ns-name { font-weight: 700; font-size: 0.95rem; color: var(--cream); margin-bottom: 0.5rem; }
+      .ns-desc { font-size: 0.83rem; color: rgba(245,240,232,0.48); line-height: 1.65; }
+      /* Process steps */
+      .ns-steps {
+        display: grid; grid-template-columns: repeat(4,1fr);
+        gap: 1rem; position: relative;
+      }
+      .ns-steps::before {
+        content: ''; position: absolute;
+        top: 20px; left: 3%; right: 3%;
+        height: 1px; background: rgba(74,172,219,0.14);
+      }
+      .ns-step {
+        background: rgba(245,240,232,0.02);
+        border: 1px solid rgba(245,240,232,0.07);
+        border-radius: 10px; padding: 1.4rem 1.1rem;
+      }
+      .ns-step-num {
+        width: 38px; height: 38px; border-radius: 50%;
+        background: rgba(74,172,219,0.1);
+        border: 1px solid rgba(74,172,219,0.25);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.68rem; font-weight: 800; color: var(--sky);
+        letter-spacing: 0.04em; margin-bottom: 0.9rem;
+        position: relative; z-index: 1;
+      }
+      .ns-step-title { font-weight: 700; font-size: 0.88rem; color: var(--cream); margin-bottom: 0.35rem; }
+      .ns-step-desc  { font-size: 0.78rem; color: rgba(245,240,232,0.43); line-height: 1.6; }
+
+      /* Responsive */
+      @media (max-width: 860px) {
+        .ns-cards { grid-template-columns: repeat(2,1fr); }
+        .ns-steps { grid-template-columns: repeat(2,1fr); }
+        .ns-steps::before { display: none; }
+      }
+      @media (max-width: 520px) {
+        .ns-cards { grid-template-columns: 1fr; }
+        .ns-steps { grid-template-columns: 1fr; }
+        #nan-special { padding: 3.5rem 1.2rem; }
+        .bday-content { padding: 5vh 5vw; }
+        .bday-name { font-size: clamp(2.6rem,14vw,4.5rem); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .bletter,.bday-tagline,.bday-message,.bday-signature,.bday-hint,.bday-eyebrow {
+          animation: none !important; opacity: 1 !important; transform: none !important;
+        }
+      }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#home" class="logo-wrap">
+                <img src="logo.svg" alt="InkAxis Logo" class="logo-svg">
+                <span class="logo-text">Ink<span>Axis</span></span>
+            </a>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#students" class="nav-students">Students 20% Off</a></li>
+                <li><a href="#nan-birthday" class="nav-students">🎉 Nandu's Day</a></li>
+                <li><a href="#contact" class="nav-cta">Hire Us</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#services">Services</a>
+        <a href="#process">How I Work</a>
+        <a href="#about">About</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#resources">Resources</a>
+        <a href="#students">Students 20% Off</a>
+        <a href="#nan-birthday">🎉 Nandu's Day</a>
+        <a href="#contact">Hire Us</a>
+    </div>
+
+    <!-- HERO -->
+    <section id="home" style="padding-top:140px;padding-bottom:80px;">
+        <div class="fade-up">
+            <div class="hero-label">AI · Research · Web Studio</div>
+            <h1 class="hero-title">Where <em>Data</em><br>Meets the<br><em>Draft.</em></h1>
+            <p class="hero-tagline">"Where Data Meets the Draft" — InkAxis Studio</p>
+            <p class="hero-desc">We build AI/ML models, craft research papers, design portfolio websites, and write
+                resumes that actually get noticed. One studio. Every skill you need.</p>
+            <div class="hero-btns">
+                <a href="#services" class="btn-primary">Explore Services</a>
+                <a href="#contact" class="btn-outline">Get a Quote</a>
+            </div>
+        </div>
+        <div class="hero-visual fade-up delay-2">
+            <div class="hero-card">
+                <svg class="graph-svg" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="30" y1="10" x2="30" y2="190" stroke="#4AACDB" stroke-width="1.5" stroke-linecap="round" />
+                    <line x1="30" y1="190" x2="350" y2="190" stroke="#4AACDB" stroke-width="1.5" stroke-linecap="round" />
+                    <line x1="30" y1="50" x2="350" y2="50" stroke="rgba(13,13,13,0.07)" stroke-width="1" />
+                    <line x1="30" y1="90" x2="350" y2="90" stroke="rgba(13,13,13,0.07)" stroke-width="1" />
+                    <line x1="30" y1="130" x2="350" y2="130" stroke="rgba(13,13,13,0.07)" stroke-width="1" />
+                    <line x1="30" y1="170" x2="350" y2="170" stroke="rgba(13,13,13,0.07)" stroke-width="1" />
+                    <polyline points="50,170 90,155 130,140 170,110 210,90 250,60 290,40 325,25" stroke="#2AADAD"
+                        stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                    <polygon points="50,170 90,155 130,140 170,110 210,90 250,60 290,40 325,25 325,190 50,190"
+                        fill="rgba(42,173,173,0.07)" />
+                    <path d="M325 25 L319 32 L328 30 Z" fill="#4AACDB" />
+                    <circle cx="325" cy="25" r="4" fill="none" stroke="#4AACDB" stroke-width="1.5" />
+                    <circle cx="90" cy="155" r="3" fill="#4AACDB" />
+                    <circle cx="170" cy="110" r="3" fill="#4AACDB" />
+                    <circle cx="250" cy="60" r="3" fill="#4AACDB" />
+                    <text x="34" y="195" font-family="DM Mono,monospace" font-size="9" fill="#7A7060">AI</text>
+                    <text x="70" y="205" font-family="DM Mono,monospace" font-size="9" fill="#7A7060">DS</text>
+                    <text x="150" y="205" font-family="DM Mono,monospace" font-size="9" fill="#7A7060">Research</text>
+                    <text x="250" y="205" font-family="DM Mono,monospace" font-size="9" fill="#7A7060">Web</text>
+                    <text x="310" y="205" font-family="DM Mono,monospace" font-size="9" fill="#7A7060">CV</text>
+                </svg>
+                <div class="hero-stat-row">
+                    <div class="hero-stat"><div class="hero-stat-num">21+</div><div class="hero-stat-label">Projects</div></div>
+                    <div class="hero-stat"><div class="hero-stat-num">16+</div><div class="hero-stat-label">Papers</div></div>
+                    <div class="hero-stat"><div class="hero-stat-num">7+</div><div class="hero-stat-label">Clients</div></div>
+                    <div class="hero-stat"><div class="hero-stat-num">1.5+</div><div class="hero-stat-label">Years</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <span class="marquee-item">Python</span><span class="marquee-item">TensorFlow</span>
+            <span class="marquee-item">PyTorch</span><span class="marquee-item">Scikit-learn</span>
+            <span class="marquee-item">LaTeX</span><span class="marquee-item">IEEE Format</span>
+            <span class="marquee-item">R Studio</span><span class="marquee-item">Pandas</span>
+            <span class="marquee-item">React</span><span class="marquee-item">Figma</span>
+            <span class="marquee-item">Jupyter</span><span class="marquee-item">Keras</span>
+            <span class="marquee-item">Python</span><span class="marquee-item">TensorFlow</span>
+            <span class="marquee-item">PyTorch</span><span class="marquee-item">Scikit-learn</span>
+            <span class="marquee-item">LaTeX</span><span class="marquee-item">IEEE Format</span>
+            <span class="marquee-item">R Studio</span><span class="marquee-item">Pandas</span>
+            <span class="marquee-item">React</span><span class="marquee-item">Figma</span>
+            <span class="marquee-item">Jupyter</span><span class="marquee-item">Keras</span>
+        </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="section-inner">
+            <div class="section-label fade-up">What We Offer</div>
+            <h2 class="section-title fade-up delay-1">Every Skill <em>You Need,</em><br>One Studio</h2>
+            <p class="section-sub fade-up delay-2">From building neural networks to writing journal drafts — we cover
+                the full spectrum of AI, data, and creative digital work.</p>
+            <div class="services-grid">
+                <div class="service-card fade-up">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg></div>
+                    <div class="service-num">01 — SERVICE</div>
+                    <div class="service-name">AI / ML / DL Projects</div>
+                    <div class="service-desc">Custom model building, training and deployment. From classification to neural networks — we handle the full ML pipeline end to end.</div>
+                    <div class="service-tags"><span class="service-tag">PyTorch</span><span class="service-tag">TensorFlow</span><span class="service-tag">Scikit-learn</span></div>
+                </div>
+                <div class="service-card fade-up delay-1">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg></div>
+                    <div class="service-num">02 — SERVICE</div>
+                    <div class="service-name">Data Science</div>
+                    <div class="service-desc">Data analysis, visualization, prediction models and interactive dashboards. Turn raw numbers into clear, actionable insights.</div>
+                    <div class="service-tags"><span class="service-tag">Pandas</span><span class="service-tag">Matplotlib</span><span class="service-tag">R</span></div>
+                </div>
+                <div class="service-card fade-up delay-2">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg></div>
+                    <div class="service-num">03 — SERVICE</div>
+                    <div class="service-name">Research Papers & Journals</div>
+                    <div class="service-desc">IEEE, Springer, Elsevier format papers. Literature reviews, methodology, results — from first draft to final submission-ready document.</div>
+                    <div class="service-tags"><span class="service-tag">LaTeX</span><span class="service-tag">IEEE</span><span class="service-tag">Springer</span></div>
+                </div>
+                <div class="service-card fade-up delay-1">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg></div>
+                    <div class="service-num">04 — SERVICE</div>
+                    <div class="service-name">Portfolio Websites</div>
+                    <div class="service-desc">Personal brand websites for students, researchers and professionals. Clean, fast, and designed to impress recruiters and collaborators.</div>
+                    <div class="service-tags"><span class="service-tag">HTML/CSS</span><span class="service-tag">React</span><span class="service-tag">Figma</span></div>
+                </div>
+                <div class="service-card fade-up delay-2">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" /></svg></div>
+                    <div class="service-num">05 — SERVICE</div>
+                    <div class="service-name">Business Websites</div>
+                    <div class="service-desc">Company sites, landing pages, startup websites. Designed for conversion with fast load times, SEO-ready structure and responsive layouts.</div>
+                    <div class="service-tags"><span class="service-tag">Next.js</span><span class="service-tag">WordPress</span><span class="service-tag">SEO</span></div>
+                </div>
+                <div class="service-card fade-up delay-3">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="9" y1="15" x2="15" y2="15" /><line x1="9" y1="18" x2="15" y2="18" /></svg></div>
+                    <div class="service-num">06 — SERVICE</div>
+                    <div class="service-name">Resume & CV Design</div>
+                    <div class="service-desc">ATS-friendly, professional, academic and creative resumes. Tailored for each role — from tech internships to research faculty positions.</div>
+                    <div class="service-tags"><span class="service-tag">ATS-Ready</span><span class="service-tag">LaTeX CV</span><span class="service-tag">Canva Pro</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+        <div class="section-inner">
+            <div class="process-header">
+                <div>
+                    <div class="section-label fade-up">My Process</div>
+                    <h2 class="section-title fade-up delay-1">How I <em>Work</em></h2>
+                </div>
+                <p class="section-sub fade-up delay-2">A transparent, structured approach that keeps you informed at every step — no surprises, just results.</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step fade-up">
+                    <div class="step-num">01</div>
+                    <div class="step-badge">Discovery</div>
+                    <div class="step-title">Discovery</div>
+                    <div class="step-desc">Understand your goals, data, and constraints in a focused kickoff call. We listen before we build — every good solution starts with the right questions.</div>
+                </div>
+                <div class="process-step fade-up delay-1">
+                    <div class="step-num">02</div>
+                    <div class="step-badge">Planning</div>
+                    <div class="step-title">Plan & Propose</div>
+                    <div class="step-desc">Scope, timeline, and tech choices aligned with your needs and budget. You get a clear proposal before any work begins — full transparency guaranteed.</div>
+                </div>
+                <div class="process-step fade-up delay-2">
+                    <div class="step-num">03</div>
+                    <div class="step-badge">Execution</div>
+                    <div class="step-title">Build & Iterate</div>
+                    <div class="step-desc">Agile sprints with regular demos and your feedback at every step. We build fast, adapt quickly, and keep you in the loop the entire way.</div>
+                </div>
+                <div class="process-step fade-up delay-3">
+                    <div class="step-num">04</div>
+                    <div class="step-badge">Delivery</div>
+                    <div class="step-title">Deliver & Support</div>
+                    <div class="step-desc">Production-ready code with docs, handoff, and post-launch support. We don't disappear after delivery — we stay available when you need us.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-image-wrap">
+                    <div class="about-img-placeholder">
+                        <svg width="100%" height="100%" viewBox="0 0 300 400" fill="none" style="position:absolute;top:0;left:0;">
+                            <text x="150" y="210" dominant-baseline="middle" text-anchor="middle" font-family="Georgia, serif" font-size="52" font-weight="700" letter-spacing="-1">
+                                <tspan fill="rgba(245,240,232,0.35)">Ink</tspan>
+                                <tspan fill="rgba(74,172,219,0.55)">Axis</tspan>
+                            </text>
+                        </svg>
+                        <svg width="180" height="180" viewBox="0 0 180 180" fill="none" style="position:relative;z-index:1;">
+                            <line x1="20" y1="160" x2="160" y2="160" stroke="#4AACDB" stroke-width="2" stroke-linecap="round" />
+                            <line x1="20" y1="160" x2="20" y2="20" stroke="#4AACDB" stroke-width="2" stroke-linecap="round" />
+                            <polyline points="30,145 55,120 80,128 110,90 140,55 160,30" stroke="#2AADAD" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            <polygon points="160,30 154,40 163,38" fill="#4AACDB" />
+                            <circle cx="55" cy="120" r="4" fill="#4AACDB" />
+                            <circle cx="110" cy="90" r="4" fill="#4AACDB" />
+                            <circle cx="140" cy="55" r="4" fill="#4AACDB" />
+                        </svg>
+                    </div>
+                    <div class="about-pattern"></div>
+                    <div class="about-pattern2"></div>
+                </div>
+                <div class="about-content">
+                    <div class="section-label fade-up">Who We Are</div>
+                    <h2 class="section-title fade-up delay-1">Built at the <em>Intersection</em> of Science & Craft</h2>
+                    <p class="about-body fade-up delay-2">InkAxis was born from a simple frustration — great researchers struggle with web presence, and great developers rarely understand academic writing. We bridge that gap.</p>
+                    <p class="about-body fade-up delay-2">We are a team of AI engineers and technical writers with hands-on experience building real-world projects, publishing research papers, and crafting modern websites. We bring the same dedication and precision to every deliverable.</p>
+                    <p class="about-body fade-up delay-2">I bring firsthand international research experience — having worked as a researcher on global collaborative projects alongside teams and institutions across different countries. That background means I understand international publication standards, cross-border academic expectations, and what it actually takes to get work recognized on a world stage.</p>
+                    <div class="skills-grid fade-up delay-3">
+                        <div class="skill-pill">Python</div><div class="skill-pill">TensorFlow</div>
+                        <div class="skill-pill">PyTorch</div><div class="skill-pill">Scikit-learn</div>
+                        <div class="skill-pill">Pandas / NumPy</div><div class="skill-pill">R Studio</div>
+                        <div class="skill-pill">LaTeX</div><div class="skill-pill">React / Next.js</div>
+                        <div class="skill-pill">Figma</div><div class="skill-pill">IEEE / APA</div>
+                        <div class="skill-pill">Jupyter</div><div class="skill-pill">Tableau</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+        <div class="section-inner">
+            <div class="section-label fade-up">Investment</div>
+            <h2 class="section-title fade-up delay-1">Simple, <em>Transparent</em> Pricing</h2>
+            <p class="section-sub fade-up delay-2">No hidden fees. Choose the tier that fits your project and budget.</p>
+            <div class="pricing-tabs fade-up delay-1">
+                <button class="ptab active" onclick="switchTab(this,'ai')">AI / ML / DS</button>
+                <button class="ptab" onclick="switchTab(this,'research')">Research</button>
+                <button class="ptab" onclick="switchTab(this,'web')">Web / Resume</button>
+            </div>
+            <div class="pricing-grid fade-up delay-2" id="pricingGrid">
+                <div class="pricing-card">
+                    <div class="plan-name">Basic</div>
+                    <div class="price-amount">₹2,999<span>/project</span></div>
+                    <div class="plan-desc">For small models, quick prototypes, or single-task scripts.</div>
+                    <ul class="feat-list">
+                        <li class="feat-item">1 ML model or analysis script</li>
+                        <li class="feat-item">Basic data cleaning & preprocessing</li>
+                        <li class="feat-item">Jupyter notebook delivery</li>
+                        <li class="feat-item">3-day delivery</li>
+                        <li class="feat-item">1 revision round</li>
+                    </ul>
+                    <button class="plan-btn plan-btn-dark" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="featured-badge">MOST POPULAR</div>
+                    <div class="plan-name">Standard</div>
+                    <div class="price-amount">₹7,499<span>/project</span></div>
+                    <div class="plan-desc">Full pipeline — data to deployed model with documentation.</div>
+                    <ul class="feat-list">
+                        <li class="feat-item">End-to-end ML pipeline</li>
+                        <li class="feat-item">EDA + feature engineering</li>
+                        <li class="feat-item">Model evaluation & report</li>
+                        <li class="feat-item">7-day delivery</li>
+                        <li class="feat-item">3 revision rounds</li>
+                    </ul>
+                    <button class="plan-btn plan-btn-sky" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="plan-name">Premium</div>
+                    <div class="price-amount">₹14,999<span>/project</span></div>
+                    <div class="plan-desc">Enterprise-grade solution with deployment, API and full support.</div>
+                    <ul class="feat-list">
+                        <li class="feat-item">Custom deep learning model</li>
+                        <li class="feat-item">API / deployment ready</li>
+                        <li class="feat-item">Full technical documentation</li>
+                        <li class="feat-item">14-day delivery</li>
+                        <li class="feat-item">Unlimited revisions</li>
+                    </ul>
+                    <button class="plan-btn plan-btn-dark" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="testimonials">
+        <div class="section-inner">
+            <div class="section-label fade-up">Client Reviews</div>
+            <h2 class="section-title fade-up delay-1" id="reviewHeading">Be Our <em>First Review</em></h2>
+            <p class="section-sub fade-up delay-2" id="reviewSubtitle">We're just getting started — work with us and leave the review that others will read first.</p>
+            <div id="reviewsDisplay" style="margin-top:2.5rem;"></div>
+            <div class="first-review-wrap fade-up delay-2" style="margin-top:2.5rem;">
+                <div class="first-review-card" id="emptyStateCard">
+                    <div class="first-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    <p class="first-review-quote">Your words could go right here. We believe in earning trust through results — not manufacturing it. Be the first client to share your honest experience with InkAxis.</p>
+                    <div class="first-review-placeholder">
+                        <div class="placeholder-avatar">?</div>
+                        <div><div class="placeholder-name">Your Name</div><div class="placeholder-role">Your Role · Your Company</div></div>
+                    </div>
+                </div>
+                <div class="first-review-cta-block">
+                    <h3 class="first-review-heading">Worked with us? <em style="color:var(--sky);font-style:italic;">Leave a review.</em></h3>
+                    <p class="first-review-body">Your honest experience helps future clients make informed decisions — and helps us grow. Takes less than a minute.</p>
+                    <form class="review-form" onsubmit="handleReview(event)" id="reviewForm">
+                        <div class="review-form-row">
+                            <div class="form-group"><label class="form-label">Your Name</label><input id="rName" class="form-input review-input" type="text" placeholder="Priya Sharma" required></div>
+                            <div class="form-group"><label class="form-label">Role / Company</label><input id="rRole" class="form-input review-input" type="text" placeholder="Researcher · IIT Delhi"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Your Rating</label>
+                            <div class="star-picker" id="starPicker">
+                                <span data-val="1" onclick="setStars(1)">★</span><span data-val="2" onclick="setStars(2)">★</span>
+                                <span data-val="3" onclick="setStars(3)">★</span><span data-val="4" onclick="setStars(4)">★</span>
+                                <span data-val="5" onclick="setStars(5)">★</span>
+                            </div>
+                            <input type="hidden" id="starValue" value="0">
+                        </div>
+                        <div class="form-group"><label class="form-label">Your Review</label><textarea id="rText" class="form-textarea review-input" placeholder="Tell others about your experience..." required></textarea></div>
+                        <button type="submit" class="plan-btn plan-btn-sky" style="width:auto;padding:0.8rem 2rem;">Submit Review →</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="section-inner">
+            <div class="faq-grid">
+                <div>
+                    <div class="section-label fade-up">FAQ</div>
+                    <h2 class="section-title fade-up delay-1">Common <em>Questions</em></h2>
+                    <p class="section-sub fade-up delay-2">Still unsure? Reach out — we're always happy to chat about your project before you commit.</p>
+                    <a href="#contact" class="btn-primary" style="display:inline-block;margin-top:2rem;">Ask Us Anything</a>
+                </div>
+                <div class="faq-list fade-up delay-1">
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How long does a typical project take? <span>+</span></button><div class="faq-a">It depends on the scope. A resume takes 1–2 days, a portfolio site takes 5–7 days, a research paper draft takes 5–10 days, and an ML project ranges from 3–14 days. We always give you a clear timeline upfront.</div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you work with international clients? <span>+</span></button><div class="faq-a">Yes! We work with clients across India, the US, UK, UAE and beyond. Payment is accepted via UPI, bank transfer, PayPal or Wise. All communication is in English.</div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Will my research paper pass plagiarism checks? <span>+</span></button><div class="faq-a">Absolutely. All research content is written from scratch and checked with Turnitin and iThenticate before delivery. We target below 10% similarity for all academic submissions.</div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I request changes after delivery? <span>+</span></button><div class="faq-a">Yes. Each plan comes with a set number of revision rounds. Premium clients get unlimited revisions within the scope. We also offer post-delivery support for bugs and minor updates.</div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if I'm not satisfied with the work? <span>+</span></button><div class="faq-a">Client satisfaction is our priority. If you're not happy after revisions, we offer a partial or full refund depending on the situation — no questions asked policy for our basic tier.</div></div>
+                    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does the student discount work? <span>+</span></button><div class="faq-a">Students get 20% off on Portfolio Websites, Resume/CV, Research Papers and Data Science Projects. Fill the Student Offer form below with your college details and ID number. We verify and send your discount code within 12 hours. One discount per student per semester.</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="resources" style="background:var(--ink);">
+        <div class="section-inner">
+            <div class="section-label fade-up" style="color:var(--sky3);">Free Resources</div>
+            <h2 class="section-title fade-up delay-1" style="color:var(--cream);">Explore Our <em>Resources</em></h2>
+            <p class="section-sub fade-up delay-2" style="color:rgba(245,240,232,0.5);">Download PDFs, roadmaps, cheatsheets and guides directly from InkAxis.</p>
+            <div class="services-grid fade-up delay-2" style="grid-template-columns:repeat(1,minmax(300px,520px));justify-content:center;">
+                <div class="service-card" style="background:rgba(245,240,232,0.04);border-color:rgba(245,240,232,0.1);text-align:center;position:relative;overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(74,172,219,0.7),rgba(42,173,173,0.3),transparent);"></div>
+                    <div class="service-icon" style="margin:auto;background:rgba(74,172,219,0.1);border-color:rgba(74,172,219,0.2);">
+                        <svg viewBox="0 0 24 24" style="stroke:#4AACDB;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+                    </div>
+                    <div class="service-num" style="color:var(--sky3);">InkAxis Resources</div>
+                    <div class="service-name" style="color:var(--cream);">PDFs, Guides & Roadmaps</div>
+                    <div class="service-desc" style="color:rgba(245,240,232,0.5);">Access all free resources including ML roadmaps, Python cheatsheets, research guides and more.</div>
+                    <div class="service-tags" style="justify-content:center;"><span class="service-tag">Machine Learning</span><span class="service-tag">Python</span><span class="service-tag">Research</span></div>
+                    <div style="margin-top:1.6rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                        <a href="https://github.com/InkAxisOfficial/Resources" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:0.75rem 1.5rem;background:rgba(74,172,219,0.12);border:1px solid rgba(74,172,219,0.4);border-radius:7px;color:#4AACDB;font-size:0.78rem;font-weight:700;letter-spacing:0.07em;text-decoration:none;text-transform:uppercase;transition:0.2s;" onmouseover="this.style.background='rgba(74,172,219,0.22)';this.style.borderColor='rgba(74,172,219,0.7)'" onmouseout="this.style.background='rgba(74,172,219,0.12)';this.style.borderColor='rgba(74,172,219,0.4)'">Download</a>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top:1.7rem;font-size:0.78rem;color:rgba(245,240,232,0.25);text-align:center;">More resources coming soon · Follow us on <a href="https://www.instagram.com/inkaxis_official" target="_blank" style="color:var(--sky3);text-decoration:none;">Instagram</a> for updates</p>
+        </div>
+    </section>
+
+    <!-- STUDENTS OFFER -->
+    <section id="students" style="background:var(--ink);">
+        <div class="section-inner">
+            <div class="section-label fade-up" style="color:var(--sky3);">Student Programme</div>
+            <h2 class="section-title fade-up delay-1" style="color:var(--cream);">Built for <em>Students.</em><br>Priced for <em>Reality.</em></h2>
+            <p class="section-sub fade-up delay-2" style="color:rgba(245,240,232,0.5);">We know budgets are tight when you're studying. Verified students get <strong style="color:var(--sky);">20% off</strong> on the services that matter most for your career.</p>
+            <div class="student-offer-grid fade-up delay-2">
+                <div class="student-offer-card"><div class="student-offer-badge">20% OFF</div><div class="service-icon" style="background:rgba(74,172,219,0.1);border-color:rgba(74,172,219,0.2);"><svg viewBox="0 0 24 24" style="stroke:#4AACDB;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg></div><div class="student-offer-name">Portfolio Website</div><div class="student-offer-desc">Your personal brand page — projects, skills, contact. Clean, fast and recruiter-ready.</div><div class="student-offer-price"><span class="student-original">₹4,999</span><span class="student-discounted">₹3,999</span></div></div>
+                <div class="student-offer-card"><div class="student-offer-badge">20% OFF</div><div class="service-icon" style="background:rgba(74,172,219,0.1);border-color:rgba(74,172,219,0.2);"><svg viewBox="0 0 24 24" style="stroke:#4AACDB;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="9" y1="15" x2="15" y2="15" /><line x1="9" y1="18" x2="15" y2="18" /></svg></div><div class="student-offer-name">Resume & CV</div><div class="student-offer-desc">ATS-optimised, role-tailored resume that stands out in internship and job applications.</div><div class="student-offer-price"><span class="student-original">₹1,499</span><span class="student-discounted">₹1,199</span></div></div>
+                <div class="student-offer-card"><div class="student-offer-badge">20% OFF</div><div class="service-icon" style="background:rgba(74,172,219,0.1);border-color:rgba(74,172,219,0.2);"><svg viewBox="0 0 24 24" style="stroke:#4AACDB;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg></div><div class="student-offer-name">Research Paper</div><div class="student-offer-desc">IEEE/Springer format, plagiarism-free and submission-ready — from literature review to final draft.</div><div class="student-offer-price"><span class="student-original">₹5,499</span><span class="student-discounted">₹4,399</span></div></div>
+                <div class="student-offer-card"><div class="student-offer-badge">20% OFF</div><div class="service-icon" style="background:rgba(74,172,219,0.1);border-color:rgba(74,172,219,0.2);"><svg viewBox="0 0 24 24" style="stroke:#4AACDB;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg></div><div class="student-offer-name">Data Science Project</div><div class="student-offer-desc">End-to-end analysis, visualisation and report — perfect for final year projects or internship prep.</div><div class="student-offer-price"><span class="student-original">₹7,499</span><span class="student-discounted">₹5,999</span></div></div>
+            </div>
+            <div class="student-claim-wrap fade-up delay-3">
+                <div class="student-claim-info">
+                    <div class="section-label" style="color:var(--sky3);margin-bottom:1.2rem;">How to Claim</div>
+                    <div class="student-steps">
+                        <div class="student-step"><div class="student-step-num">1</div><div><div class="student-step-title">Fill the form</div><div class="student-step-desc">Submit your name, email and college details below.</div></div></div>
+                        <div class="student-step"><div class="student-step-num">2</div><div><div class="student-step-title">Verify your college ID</div><div class="student-step-desc">We confirm your student status via your college ID number.</div></div></div>
+                        <div class="student-step"><div class="student-step-num">3</div><div><div class="student-step-title">Get your discount code</div><div class="student-step-desc">We'll email your 20% off code within 12 hours.</div></div></div>
+                    </div>
+                    <div class="student-note"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--sky)" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>Valid college ID required. One discount per student per semester.</div>
+                </div>
+                <form class="student-form" action="https://formspree.io/f/xzdoqjer" method="POST">
+                    <input type="hidden" name="_subject" value="🎓 Student Discount Request — InkAxis">
+                    <input type="hidden" name="form_type" value="STUDENT OFFER REQUEST">
+                    <div class="form-row"><div class="form-group"><label class="form-label">Full Name</label><input class="form-input review-input" type="text" name="student_name" placeholder="Your full name" required></div><div class="form-group"><label class="form-label">Email Address</label><input class="form-input review-input" type="email" name="student_email" placeholder="your@email.com" required></div></div>
+                    <div class="form-group"><label class="form-label">College / University Name</label><input class="form-input review-input" type="text" name="college_name" placeholder="e.g. IIT Delhi, VIT Vellore, BITS Pilani" required></div>
+                    <div class="form-row"><div class="form-group"><label class="form-label">College Location</label><input class="form-input review-input" type="text" name="college_location" placeholder="City, State" required></div><div class="form-group"><label class="form-label">Course & Year</label><input class="form-input review-input" type="text" name="course_year" placeholder="e.g. B.Tech CSE, 3rd Year"></div></div>
+                    <div class="form-group"><label class="form-label">College ID Number</label><input class="form-input review-input" type="text" name="college_id" placeholder="Your college ID / roll number" required></div>
+                    <div class="form-group"><label class="form-label">Upload College ID Card <span style="font-size:0.62rem;opacity:0.5;">(Required for verification)</span></label>
+                        <div class="file-upload-wrap"><input type="file" id="idCardUpload" name="id_card" accept="image/*,.pdf" onchange="showFileName(this)" required><div class="file-upload-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" /></svg></div><div class="file-upload-text"><strong>Click to upload</strong> your college ID card</div><div class="file-upload-hint">JPG, PNG or PDF · Max 5MB</div><div class="file-name-display" id="fileNameDisplay">No file chosen</div></div>
+                    </div>
+                    <div class="form-group"><label class="form-label">Service You Need</label><select class="form-select review-input" name="service_needed" style="background:rgba(245,240,232,0.06);border:1px solid rgba(245,240,232,0.12);color:var(--cream);"><option value="" style="background:var(--ink);">Select a service...</option><option style="background:var(--ink);">Portfolio Website</option><option style="background:var(--ink);">Resume / CV Design</option><option style="background:var(--ink);">Research Paper</option><option style="background:var(--ink);">Data Science Project</option><option style="background:var(--ink);">Multiple Services</option></select></div>
+                    <div class="form-group"><label class="form-label">Anything else? <span style="font-size:0.62rem;opacity:0.5;">(Optional)</span></label><textarea class="form-textarea review-input" name="message" placeholder="Tell us what you're working on — project topic, deadline, goals..."></textarea></div>
+                    <button type="submit" class="plan-btn plan-btn-sky" style="width:100%;padding:1rem;font-size:0.9rem;letter-spacing:0.06em;">Claim My 20% Discount →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-inner">
+            <div class="section-label fade-up">Let's Work</div>
+            <h2 class="section-title fade-up delay-1">Start Your <em>Project</em> Today</h2>
+            <div class="contact-grid">
+                <div class="contact-info fade-up delay-1">
+                    <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg></div><div><div class="contact-label">Email</div><div class="contact-value">inkaxisofficial@gmail.com</div></div></div>
+                    <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.42 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg></div><div><div class="contact-label">WhatsApp</div><a href="https://wa.me/601171368510" target="_blank" style="text-decoration:none;"><div class="contact-value">+60 11-7136 8510</div></a></div></div>
+                    <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg></div><div><div class="contact-label">Location</div><div class="contact-value">India · Remote Worldwide</div></div></div>
+                    <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg></div><div><div class="contact-label">Response Time</div><div class="contact-value">Within 12 hours</div></div></div>
+                </div>
+                <form class="contact-form fade-up delay-2" action="https://formspree.io/f/xzdoqjer" method="POST">
+                    <input type="hidden" name="_subject" value="💼 New Project Enquiry — InkAxis">
+                    <input type="hidden" name="form_type" value="HIRE US / PROJECT ENQUIRY">
+                    <div class="form-row"><div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" name="name" placeholder="Rahul Sharma" required></div><div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" name="email" placeholder="you@example.com" required></div></div>
+                    <div class="form-group"><label class="form-label">Phone Number <span style="color:var(--muted);font-size:0.62rem;">(Optional)</span></label><input class="form-input" type="tel" name="phone" placeholder="+60 11-7136 8510"></div>
+                    <div class="form-group"><label class="form-label">Service Needed</label><select class="form-select form-input" name="service"><option value="">Select a service...</option><option>AI / ML / DL Project</option><option>Data Science & Analysis</option><option>Research Paper / Journal Draft</option><option>Portfolio Website</option><option>Business Website</option><option>Resume / CV Design</option><option>Multiple Services</option></select></div>
+                    <div class="form-row"><div class="form-group"><label class="form-label">Budget Range</label><select class="form-select form-input" name="budget"><option>Under ₹3,000</option><option>₹3,000 – ₹8,000</option><option>₹8,000 – ₹15,000</option><option>₹15,000+</option></select></div><div class="form-group"><label class="form-label">Deadline</label><input class="form-input" type="date" name="deadline"></div></div>
+                    <div class="form-group"><label class="form-label">Project Details</label><textarea class="form-textarea" name="message" placeholder="Tell us about your project — what you need, your goals, and any specific requirements..."></textarea></div>
+                    <button type="submit" class="form-submit">Send Message →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================
+         NAN'S BIRTHDAY SECTION
+         ============================== -->
+    <section id="nan-birthday">
+        <div id="bday-stars"></div>
+        <canvas id="fw-canvas"></canvas>
+
+        <svg class="bday-skyline" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="40" width="40" height="60"/><rect x="50" y="20" width="30" height="80"/>
+            <rect x="90" y="55" width="50" height="45"/><rect x="150" y="10" width="35" height="90"/>
+            <rect x="195" y="45" width="60" height="55"/><rect x="265" y="30" width="25" height="70"/>
+            <rect x="300" y="60" width="45" height="40"/><rect x="355" y="15" width="30" height="85"/>
+            <rect x="400" y="50" width="55" height="50"/><rect x="465" y="35" width="35" height="65"/>
+            <rect x="510" y="5" width="28" height="95"/><rect x="550" y="48" width="50" height="52"/>
+            <rect x="610" y="25" width="40" height="75"/><rect x="660" y="58" width="60" height="42"/>
+            <rect x="730" y="12" width="32" height="88"/><rect x="775" y="42" width="45" height="58"/>
+            <rect x="830" y="55" width="55" height="45"/><rect x="895" y="20" width="30" height="80"/>
+            <rect x="935" y="48" width="50" height="52"/><rect x="995" y="8" width="28" height="92"/>
+            <rect x="1035" y="50" width="45" height="50"/><rect x="1090" y="30" width="35" height="70"/>
+            <rect x="1135" y="55" width="65" height="45"/>
+        </svg>
+
+        <div class="bday-content">
+            <div class="bday-eyebrow">A Little Sky Full Of Wishes For</div>
+            <div class="bday-name-wrap">
+                <h1 class="bday-name" id="nameText"></h1>
+            </div>
+            <p class="bday-tagline">Happy Birthday! 🎉</p>
+            <p class="bday-message">
+                On a day as bright and special as you, <strong>Nandhini (Nan)</strong> — wishing you
+                laughter that never runs out, dreams that keep growing bigger, and a year ahead
+                that treats you exactly as wonderfully as you deserve. Thank you for being the
+                kind of friend who makes ordinary days feel like celebrations. Here's to you,
+                today and always.
+            </p>
+            <p class="bday-signature">WITH LOVE, ON YOUR DAY ✨</p>
+            <p class="bday-hint">my small gift from my side</p>
+        </div>
+    </section>
+
+    <!-- NAN SPECIAL -->
+    <section id="nan-special">
+        <div class="ns-inner">
+
+            <div class="ns-label">What Makes Nandu Special</div>
+            <h2 class="ns-title">Every good thing, <em>just for her</em></h2>
+            <p class="ns-sub">A few things worth saying out loud, because some people deserve to hear them.</p>
+
+            <div class="ns-cards">
+                <div class="ns-card">
+                    <div class="ns-num">01 — THE SPARK</div>
+                    <div class="ns-name">You Light Up Every Room</div>
+                    <div class="ns-desc">Your energy is contagious in the best way. Wherever you go, people feel it — that warmth, that brightness. The world is a better place with you in it, Nan.</div>
+                </div>
+                <div class="ns-card">
+                    <div class="ns-num">02 — THE HEART</div>
+                    <div class="ns-name">A Friend Like No Other</div>
+                    <div class="ns-desc">You show up, you listen, you remember. You turn ordinary days into something worth smiling about. Having you as a friend is one of life's quiet privileges.</div>
+                </div>
+                <div class="ns-card">
+                    <div class="ns-num">03 — THE FUTURE</div>
+                    <div class="ns-name">Big Things Are Coming</div>
+                    <div class="ns-desc">Every dream you're working on, every goal you've set your eyes on — this is your year. You are ready, and everything you deserve is on its way to you.</div>
+                </div>
+            </div>
+
+            <div class="ns-label" style="margin-top:3.5rem;">Birthday Wishes</div>
+            <h2 class="ns-title">Four Wishes <em>From Me</em></h2>
+            <p class="ns-sub" style="margin-bottom:2.5rem;">Simple, honest, and from the heart — everything I wish for you on June 20th.</p>
+
+            <div class="ns-steps">
+                <div class="ns-step">
+                    <div class="ns-step-num">01</div>
+                    <div class="ns-step-title">Endless Happiness</div>
+                    <div class="ns-step-desc">May every day bring at least one moment that makes you smile so wide it hurts. You deserve that, always.</div>
+                </div>
+                <div class="ns-step">
+                    <div class="ns-step-num">02</div>
+                    <div class="ns-step-title">Health & Peace</div>
+                    <div class="ns-step-desc">May your mind stay calm, your heart stay full, and your health stay strong through every season ahead of you.</div>
+                </div>
+                <div class="ns-step">
+                    <div class="ns-step-num">03</div>
+                    <div class="ns-step-title">Success in Everything</div>
+                    <div class="ns-step-desc">May every goal find its way to you — in your studies, your work, and every milestone that matters most.</div>
+                </div>
+                <div class="ns-step">
+                    <div class="ns-step-num">04</div>
+                    <div class="ns-step-title">People Who Deserve You</div>
+                    <div class="ns-step-desc">May you always be surrounded by those who truly value you and give back everything you pour out so freely.</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo-text">Ink<span>Axis</span></div>
+                    <div class="footer-tagline">"Where Data Meets the Draft"<br>AI · Research · Web Studio</div>
+                </div>
+                <div><div class="footer-col-title">Services</div><ul class="footer-links"><li><a href="#services">AI / ML Projects</a></li><li><a href="#services">Data Science</a></li><li><a href="#services">Research Papers</a></li><li><a href="#services">Portfolio Sites</a></li><li><a href="#services">Resume Design</a></li></ul></div>
+                <div><div class="footer-col-title">Studio</div><ul class="footer-links"><li><a href="#process">How I Work</a></li><li><a href="#about">About Us</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#testimonials">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#resources">Free Resources</a></li><li><a href="#students">Students Offer</a></li><li><a href="#nan-birthday">🎉 Nandu's Day</a></li></ul></div>
+                <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:inkaxisofficial@gmail.com" target="_blank">inkaxisofficial@gmail.com</a></li><li><a href="https://wa.me/601171368510" target="_blank">WhatsApp Us</a></li><li><a href="https://www.linkedin.com/in/inkaxis" target="_blank">LinkedIn</a></li><li><a href="https://github.com/InkAxisOfficial" target="_blank">GitHub</a></li><li><a href="https://www.instagram.com/inkaxis_official?igsh=MTczeW94aGowbmY4cA==" target="_blank">Instagram</a></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">© <span id="year"></span> InkAxis Studio · All rights reserved</div>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/inkaxis" target="_blank" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg></a>
+                    <a href="https://github.com/InkAxisOfficial" target="_blank" class="social-btn" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /></svg></a>
+                    <a href="https://www.instagram.com/inkaxis_official?igsh=MTczeW94aGowbmY4cA==" target="_blank" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg></a>
+                    <a href="https://wa.me/601171368510" target="_blank" class="social-btn" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- Birthday JS -->
+    <script>
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Name burst
+      const nameStr = "Nandu";
+      const nameEl  = document.getElementById('nameText');
+      nameStr.split('').forEach((ch, i) => {
+        const span = document.createElement('span');
+        span.className = 'bletter';
+        span.textContent = ch;
+        span.style.animationDelay = (0.6 + i * 0.09) + 's';
+        nameEl.appendChild(span);
+      });
+
+      // Starfield
+      const bdaySection   = document.getElementById('nan-birthday');
+      const starsContainer = document.getElementById('bday-stars');
+      const starCount = window.innerWidth < 600 ? 60 : 120;
+      for (let i = 0; i < starCount; i++) {
+        const s = document.createElement('div');
+        s.className = 'bday-star';
+        const size = Math.random() * 2 + 1;
+        s.style.width  = size + 'px';
+        s.style.height = size + 'px';
+        s.style.left   = Math.random() * 100 + '%';
+        s.style.top    = Math.random() * 80 + '%';
+        s.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        s.style.animationDelay    = Math.random() * 3 + 's';
+        starsContainer.appendChild(s);
+      }
+
+      // Fireworks
+      const canvas = document.getElementById('fw-canvas');
+      const ctx    = canvas.getContext('2d');
+      let W, H;
+      function resizeBday() {
+        W = canvas.width  = bdaySection.offsetWidth;
+        H = canvas.height = bdaySection.offsetHeight;
+      }
+      resizeBday();
+      window.addEventListener('resize', resizeBday);
+
+      const palette = ['#FF2D78','#FFC93C','#7B2FF7','#FFF8E7','#FF9F43','#4FD1FF'];
+
+      class Particle {
+        constructor(x,y,color,angle,speed,isTrail){
+          this.x=x;this.y=y;this.color=color;
+          this.vx=Math.cos(angle)*speed; this.vy=Math.sin(angle)*speed;
+          this.alpha=1;
+          this.decay=isTrail?(Math.random()*0.02+0.015):(Math.random()*0.012+0.012);
+          this.gravity=0.045; this.size=Math.random()*2+1.5;
+        }
+        update(){this.vy+=this.gravity;this.vx*=0.985;this.vy*=0.985;this.x+=this.vx;this.y+=this.vy;this.alpha-=this.decay;}
+        draw(){if(this.alpha<=0)return;ctx.save();ctx.globalAlpha=Math.max(this.alpha,0);ctx.fillStyle=this.color;ctx.shadowBlur=10;ctx.shadowColor=this.color;ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();ctx.restore();}
+      }
+      class Rocket {
+        constructor(x,targetY,color){this.x=x;this.y=H+10;this.targetY=targetY;this.color=color;this.speed=Math.random()*3+8;this.exploded=false;this.trail=[];}
+        update(){this.trail.push({x:this.x,y:this.y});if(this.trail.length>8)this.trail.shift();this.y-=this.speed;this.speed*=0.995;if(this.y<=this.targetY)this.exploded=true;}
+        draw(){ctx.save();ctx.fillStyle=this.color;ctx.shadowBlur=12;ctx.shadowColor=this.color;this.trail.forEach((t,i)=>{ctx.globalAlpha=(i/this.trail.length)*0.6;ctx.beginPath();ctx.arc(t.x,t.y,2,0,Math.PI*2);ctx.fill();});ctx.globalAlpha=1;ctx.beginPath();ctx.arc(this.x,this.y,2.5,0,Math.PI*2);ctx.fill();ctx.restore();}
+      }
+
+      let rockets=[], particles=[];
+      function launchFirework(x,y,color){rockets.push(new Rocket(x||Math.random()*W,y||(Math.random()*H*0.35+H*0.08),color||palette[Math.floor(Math.random()*palette.length)]));}
+      function explode(x,y,color){
+        const count=55+Math.floor(Math.random()*30);
+        for(let i=0;i<count;i++){const angle=(Math.PI*2*i)/count+Math.random()*0.1;particles.push(new Particle(x,y,color,angle,Math.random()*5+3,false));}
+        for(let i=0;i<15;i++){particles.push(new Particle(x,y,'#FFF8E7',Math.random()*Math.PI*2,Math.random()*2+1,true));}
+      }
+      function animate(){
+        ctx.clearRect(0,0,W,H);
+        rockets.forEach((r,i)=>{r.update();r.draw();if(r.exploded){explode(r.x,r.y,r.color);rockets.splice(i,1);}});
+        particles.forEach((p,i)=>{p.update();p.draw();if(p.alpha<=0)particles.splice(i,1);});
+        requestAnimationFrame(animate);
+      }
+      animate();
+      function autoLaunch(){launchFirework();if(Math.random()>0.5)setTimeout(()=>launchFirework(),300);setTimeout(autoLaunch,Math.random()*1200+900);}
+      setTimeout(autoLaunch,600);
+
+      bdaySection.addEventListener('click',(e)=>{
+        const rect=bdaySection.getBoundingClientRect();
+        for(let i=0;i<3;i++){setTimeout(()=>launchFirework(e.clientX-rect.left+(Math.random()-0.5)*150,(e.clientY-rect.top)*0.5+(Math.random()-0.5)*60),i*120);}
+      });
+      bdaySection.addEventListener('touchstart',(e)=>{
+        const t=e.touches[0];if(!t)return;
+        const rect=bdaySection.getBoundingClientRect();
+        for(let i=0;i<3;i++){setTimeout(()=>launchFirework(t.clientX-rect.left+(Math.random()-0.5)*150,(t.clientY-rect.top)*0.5+(Math.random()-0.5)*60),i*120);}
+      },{passive:true});
+    </script>
+
+</body>
+</html>      #bday-stars { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
       .bday-star {
         position: absolute; border-radius: 50%; background: #FFF8E7;
         animation: bdayTwinkle ease-in-out infinite;

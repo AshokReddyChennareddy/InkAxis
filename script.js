@@ -201,30 +201,6 @@ function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 
-(function initMobileMenu() {
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  if (!hamburger || !mobileMenu) return;
-
-  hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
-  });
-
-  // Close menu when any link is tapped
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-    });
-  });
-
-  // Close menu when tapping outside
-  document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-      mobileMenu.classList.remove('open');
-    }
-  });
-})();
-
 /* ── FAQ ACCORDION ── */
 function toggleFaq(btn) {
   const ans = btn.nextElementSibling;
@@ -232,6 +208,33 @@ function toggleFaq(btn) {
   document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
   document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
   if (!isOpen) { ans.classList.add('open'); btn.classList.add('open'); }
+}
+
+/* ── SERVICES TABS: Our Services / International Services ── */
+function switchServices(btn, key) {
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.getElementById('panel-main').style.display = key === 'main' ? '' : 'none';
+  document.getElementById('panel-intl').style.display = key === 'intl' ? '' : 'none';
+
+  // make sure cards in the newly shown panel are visible
+  const panel = document.getElementById(key === 'intl' ? 'panel-intl' : 'panel-main');
+  panel.querySelectorAll('.fade-up').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 60 * i);
+  });
+}
+
+/* Footer link → open International tab */
+function openIntlTab() {
+  const btn = document.querySelectorAll('.stab')[1];
+  if (btn) switchServices(btn, 'intl');
+}
+
+/* "Get International Support" button → preselect contact dropdown */
+function selectIntlService() {
+  const select = document.querySelector('#contact select[name="service"]');
+  if (select) select.value = 'International Career Support';
 }
 
 /* ── PRICING TABS ── */
